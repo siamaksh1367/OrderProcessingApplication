@@ -1,17 +1,19 @@
-﻿using System;
+﻿using OrderProcessor.EventModels;
+using System;
 
 namespace OrderProcessor
 {
-    public class OrderProcessorSimple : OrderProcessor
+    public class OrderProcessorSimple : StartingProcessor<PaymentEventArgs>
     {
-        public OrderProcessorSimple(PaymentProcessor paymentProcessor):base(paymentProcessor)
+        public OrderProcessorSimple(MidProcessor<PaymentEventArgs, ActionEventArgs> payment):base()
         {
-            
+            Process+= payment.GetCalled;
         }
-        public override void ProcessOrder(Order order)
+        public  void run()
         {
             Console.WriteLine("Processing the order just started");
-            OnOrderProcessing(order);
+            var payment = new PaymentEventArgs();
+            OnProcessed(payment);
         }
     }
 }

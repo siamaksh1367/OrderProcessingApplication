@@ -1,14 +1,21 @@
-﻿using System;
+﻿using OrderProcessor.EventModels;
+using System;
 
 namespace OrderProcessor
 {
-    public class PaymentProcessorPhysicalPruduct : PaymentProcessor
+    public class PaymentProcessorPhysicalPruduct : MidProcessor<PaymentEventArgs,ActionEventArgs>
     {
-        public override void OnOrderProcessing(object sender, OrderEventArgs order)
+        public PaymentProcessorPhysicalPruduct(FinishProcessor<ActionEventArgs> action)
+        {
+            Process += action.GetCalled;
+        }
+        
+        public override void GetCalled(object sender, PaymentEventArgs t)
         {
             Console.WriteLine("Payment process finished for a Physical Pruduct ");
-            var payment = new Payment();
-            OnPaymentProcessed(payment);
+            var actionData= new ActionEventArgs();
+            OnProcessed(actionData);
         }
     }
+    
 }

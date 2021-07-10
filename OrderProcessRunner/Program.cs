@@ -7,8 +7,8 @@ namespace OrderProcessRunner
     {
         static void Main(string[] args)
         {
-            var orderProc = new OrderProcessorSimple(new PaymentProcessorPhysicalPruduct());
-            orderProc.ProcessOrder(new Order(){ OrderNumber=1});
+            var order = new OrderProcessorSimple(new PaymentProcessorBook(new ActionRoyaltyDepartment()));
+            order.run();
         }
     }
 }
