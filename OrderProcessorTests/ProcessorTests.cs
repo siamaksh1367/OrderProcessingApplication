@@ -1,7 +1,6 @@
 using Moq;
 using NUnit.Framework;
 using OrderProcessor;
-using OrderProcessor.EventModels;
 using System;
 
 namespace OrderProcessorTests
@@ -17,14 +16,13 @@ namespace OrderProcessorTests
         [Test]
         public void OrderProcessorSimpleTest_WhenCalled_RaiseAnEvent()
         {
-            //var mid = new Mock<MidProcessor<PaymentEventArgs, ActionEventArgs>>();
-            //var orderProcesssSimple = new OrderProcessorSimple(mid.Object);
+            var videoPaching = new Mock<VideoPacking>();
+            var paidVideo = new VideoPayment(new System.Collections.Generic.List<IObserver<PaymentDto>> { videoPaching.Object });
 
-            //var key = EventArgs.Empty;
-            //orderProcesssSimple.Process += (sender, args) => { key = args; };
-            //orderProcesssSimple.run();
+            var payment = new PaymentDto();
+            paidVideo.ProcessPayment(payment);
 
-            //Assert.That(key, Is.Not.EqualTo(EventArgs.Empty));
+            videoPaching.Verify(s=>s.OnNext(payment));
         }
     }
 }
