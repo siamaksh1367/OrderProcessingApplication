@@ -1,8 +1,8 @@
 ﻿namespace OrderProcessor
 {
-    public abstract class GeneralComission : GeneralObserver<PaymentDto>, IComission
+    public abstract class GeneralComission : GeneralObserver<PaymentDto>
     {
-        public void GenerateComisiion()
+        protected void GenerateComisiion()
         {
             System.Console.WriteLine("GenerateComisiion");
         }

@@ -2,19 +2,19 @@
 
 namespace OrderProcessor
 {
-    public abstract class GeneralPacking : GeneralObserver<PaymentDto>, IPacking
+    public abstract class GeneralPacking : GeneralObserver<PaymentDto>
     {
-        public virtual void AddFirstAid()
+        protected virtual void AddFirstAid()
         {
             Console.WriteLine("AddFirstAid");
         }
 
-        public virtual void DuplicateSlips()
+        protected virtual void DuplicateSlips()
         {
             Console.WriteLine("DuplicateSlips");
         }
 
-        public virtual void GenerateSlips()
+        protected virtual void GenerateSlips()
         {
             Console.WriteLine("GenerateSlips");
         }

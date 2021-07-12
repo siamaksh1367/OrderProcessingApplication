@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OrderProcessor
 {
-    public abstract class GeneralPayment : GeneralObservable<PaymentDto>, IPayment
+    public abstract class GeneralPayment : GeneralObservable<PaymentDto>
     {
         protected GeneralPayment(List<IObserver<PaymentDto>> observers) : base(observers)
         {

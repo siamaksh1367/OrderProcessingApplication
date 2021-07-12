@@ -1,8 +1,8 @@
 ﻿namespace OrderProcessor
 {
-    public abstract class GeneralNotify : GeneralObserver<PaymentDto>, INotify
+    public abstract class GeneralNotify : GeneralObserver<PaymentDto>
     {
-        public virtual void SendAMail()
+        protected virtual void SendAMail()
         {
             System.Console.WriteLine("SendAMail");
         }
